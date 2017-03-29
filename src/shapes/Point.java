@@ -1,6 +1,7 @@
 package shapes;
 
 /**
+ * Point Class used for storing coordinates of points used by shapes
  * Created by Algernon on 29/03/2017.
  */
 public class Point {
