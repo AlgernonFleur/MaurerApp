@@ -5,16 +5,16 @@ package shapes;
  * Created by Algernon on 29/03/2017.
  */
 public class Point {
-	private float x,y;
+	private float xVal,yVal;
 	
-	public Point(float x, float y) {
-		this.x = x;
-		this.y = y;
+	public Point(float xVal, float yVal) {
+		this.xVal = xVal;
+		this.yVal = yVal;
 	}
 	
-	public float getX() {return x;}
-	public void setX(float x) {this.x = x;}
+	public float x() {return xVal;}
+	public void sx(float xVal) {this.xVal = xVal;}
 	
-	public float getY() {return y;}
-	public void setY(float y) {this.y = y;}
+	public float y() {return yVal;}
+	public void sy(float yVal) {this.yVal = yVal;}
 }
