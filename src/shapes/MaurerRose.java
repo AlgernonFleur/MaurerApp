@@ -35,7 +35,7 @@ public class MaurerRose {
 		pointsList = temp;
 	}
 	
-	private ArrayList<Point> getPointsList(){
+	public ArrayList<Point> getPointsList(){
 		return pointsList;
 	}
 }
