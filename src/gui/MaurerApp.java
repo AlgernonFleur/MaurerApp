@@ -16,7 +16,7 @@ public class MaurerApp extends PApplet {
 	MaurerRose rose;
 	MaurerRose base;
 	private ControlP5 ctrl;
-	private int nVal = 1, dVal = 1; //default values
+	private int nVal = 0, dVal = 1; //default values
 	private boolean showBase = false;
 	
 	public void setup(){
@@ -28,29 +28,22 @@ public class MaurerApp extends PApplet {
 		ButtonListener listener = new ButtonListener();
 		
 		//Buttons to control N Value
-		ctrl.addButton("Inc N")
-				.setPosition(0,0).setSize(100,75)
+		ctrl.addButton("Inc N").setPosition(0,0).setSize(100,75)
 				.setId(1).addListener(listener);
-		ctrl.addButton("Dec N")
-				.setPosition(0,80).setSize(100,75)
+		ctrl.addButton("Dec N").setPosition(0,80).setSize(100,75)
 				.setId(2).addListener(listener);
 		
 		//Buttons to control D Value
-		ctrl.addButton("Inc D")
-				.setPosition(105,0).setSize(100,75)
+		ctrl.addButton("Inc D").setPosition(105,0).setSize(100,75)
 				.setId(3).addListener(listener);
-		ctrl.addButton("Dec D")
-				.setPosition(105,80).setSize(100,75)
+		ctrl.addButton("Dec D").setPosition(105,80).setSize(100,75)
 				.setId(4).addListener(listener);
 		
 		//Extra buttons
-		ctrl.addButton("Base")
-				.setPosition(210,0).setSize(100,75)
+		ctrl.addButton("Base").setPosition(210,0).setSize(100,75)
 				.setId(5).addListener(listener);
-		ctrl.addButton("Reset")
-				.setPosition(210,80).setSize(100,75)
+		ctrl.addButton("Reset").setPosition(210,80).setSize(100,75)
 				.setId(6).addListener(listener);
-		
 	}
 	
 	private class ButtonListener implements ControlListener{
@@ -62,10 +55,10 @@ public class MaurerApp extends PApplet {
 				case(3): dVal++; break;
 				case(4): dVal--; break;
 				case(5): showBase = !showBase; break;
-				case(6): nVal=1;dVal=1; break;
+				case(6): nVal=0;dVal=1; break;
 			}
-			nVal = constrain(nVal,1,1000);
-			dVal = constrain(dVal,1,1000);
+			nVal = constrain(nVal,0,360);
+			dVal = constrain(dVal,1,360);
 			rose.update(nVal,dVal);
 			base.update(nVal,1);
 		}
@@ -75,12 +68,15 @@ public class MaurerApp extends PApplet {
 		background(50);
 		text("N value: " + nVal,0,200);
 		text("D value: " + dVal,105,200);
+		text("Manipulating N ",0,250);
 		
 		pushMatrix();
 		translate(width/2,height/2);
 		
 		float xInit;
 		float yInit;
+		
+		//for drawing the base rose
 		if(showBase){
 			stroke(255,0,0);
 			xInit = 0;
@@ -93,6 +89,7 @@ public class MaurerApp extends PApplet {
 			line(xInit,-yInit,0,0);
 		}
 		
+		//for drawing the Maurer rose
 		stroke(200);
 		xInit = 0;
 		yInit = 0;
@@ -102,6 +99,8 @@ public class MaurerApp extends PApplet {
 			yInit=(float)p.y();
 		}
 		line(xInit,-yInit,0,0);
+		
+		
 		popMatrix();
 	}
 	
