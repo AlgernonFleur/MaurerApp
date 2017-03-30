@@ -77,6 +77,7 @@ public class MaurerApp extends PApplet {
 			xInit=(float)p.x();
 			yInit=(float)p.y();
 		}
+		line(xInit,-yInit,0,0);
 		popMatrix();
 	}
 	
