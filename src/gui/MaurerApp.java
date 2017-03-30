@@ -14,15 +14,17 @@ import shapes.Point;
 public class MaurerApp extends PApplet {
 	
 	MaurerRose rose;
+	MaurerRose base;
 	private ControlP5 ctrl;
 	private int nVal = 1, dVal = 1; //default values
+	private boolean showBase = true;
 	
 	public void setup(){
 		rose = new MaurerRose(nVal,dVal);
+		base = new MaurerRose(nVal,1);
 		ctrl = new ControlP5(this);
 		ctrl.setFont(new ControlFont(createFont("Arial",20)));
 		ButtonListener listener = new ButtonListener();
-		stroke(200);
 		
 		//Buttons to control N Value
 		ctrl.addButton("Inc N")
@@ -47,6 +49,19 @@ public class MaurerApp extends PApplet {
 				.setSize(100,75)
 				.setId(4)
 				.addListener(listener);
+		
+		//Extra buttons
+		ctrl.addButton("Base")
+				.setPosition(210,0)
+				.setSize(100,75)
+				.setId(5)
+				.addListener(listener);
+		ctrl.addButton("Reset")
+				.setPosition(210,80)
+				.setSize(100,75)
+				.setId(6)
+				.addListener(listener);
+		
 	}
 	
 	private class ButtonListener implements ControlListener{
@@ -57,10 +72,13 @@ public class MaurerApp extends PApplet {
 				case(2): nVal--; break;
 				case(3): dVal++; break;
 				case(4): dVal--; break;
+				case(5): showBase = !showBase; break;
+				case(6): nVal=1;dVal=1; break;
 			}
-			nVal = constrain(nVal,1,100);
-			dVal = constrain(dVal,1,100);
+			nVal = constrain(nVal,1,1000);
+			dVal = constrain(dVal,1,1000);
 			rose.update(nVal,dVal);
+			base.update(nVal,1);
 		}
 	}
 	
@@ -68,10 +86,27 @@ public class MaurerApp extends PApplet {
 		background(50);
 		text("N value: " + nVal,0,200);
 		text("D value: " + dVal,105,200);
+		
 		pushMatrix();
 		translate(width/2,height/2);
-		float xInit = 0;
-		float yInit = 0;
+		
+		float xInit;
+		float yInit;
+		if(showBase){
+			stroke(255,0,0);
+			xInit = 0;
+			yInit = 0;
+			for (Point p:base.getPointsList()) {
+				line(xInit,-yInit,(float)p.x(),-(float)p.y());
+				xInit=(float)p.x();
+				yInit=(float)p.y();
+			}
+			line(xInit,-yInit,0,0);
+		}
+		
+		stroke(200);
+		xInit = 0;
+		yInit = 0;
 		for (Point p:rose.getPointsList()) {
 			line(xInit,-yInit,(float)p.x(),-(float)p.y());
 			xInit=(float)p.x();
