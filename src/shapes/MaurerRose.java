@@ -27,7 +27,7 @@ public class MaurerRose {
 		ArrayList<Point> temp = new ArrayList<>();
 		double r,x,y;
 		for(int i=0;i<360*dVal;i+=dVal){
-			r = 100*Math.sin(Math.toRadians(nVal*i));
+			r = 500*Math.sin(Math.toRadians(nVal*i));
 			x = r * Math.cos(Math.toRadians(i));
 			y = r * Math.sin(Math.toRadians(i));
 			temp.add(new Point(x,y));
