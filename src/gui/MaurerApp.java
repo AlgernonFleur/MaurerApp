@@ -17,9 +17,10 @@ public class MaurerApp extends PApplet {
 	MaurerRose base;
 	private ControlP5 ctrl;
 	private int nVal = 1, dVal = 1; //default values
-	private boolean showBase = true;
+	private boolean showBase = false;
 	
 	public void setup(){
+		//initialise objects to use
 		rose = new MaurerRose(nVal,dVal);
 		base = new MaurerRose(nVal,1);
 		ctrl = new ControlP5(this);
@@ -28,39 +29,27 @@ public class MaurerApp extends PApplet {
 		
 		//Buttons to control N Value
 		ctrl.addButton("Inc N")
-				.setPosition(0,0)
-				.setSize(100,75)
-				.setId(1)
-				.addListener(listener);
+				.setPosition(0,0).setSize(100,75)
+				.setId(1).addListener(listener);
 		ctrl.addButton("Dec N")
-				.setPosition(0,80)
-				.setSize(100,75)
-				.setId(2)
-				.addListener(listener);
+				.setPosition(0,80).setSize(100,75)
+				.setId(2).addListener(listener);
 		
 		//Buttons to control D Value
 		ctrl.addButton("Inc D")
-				.setPosition(105,0)
-				.setSize(100,75)
-				.setId(3)
-				.addListener(listener);
+				.setPosition(105,0).setSize(100,75)
+				.setId(3).addListener(listener);
 		ctrl.addButton("Dec D")
-				.setPosition(105,80)
-				.setSize(100,75)
-				.setId(4)
-				.addListener(listener);
+				.setPosition(105,80).setSize(100,75)
+				.setId(4).addListener(listener);
 		
 		//Extra buttons
 		ctrl.addButton("Base")
-				.setPosition(210,0)
-				.setSize(100,75)
-				.setId(5)
-				.addListener(listener);
+				.setPosition(210,0).setSize(100,75)
+				.setId(5).addListener(listener);
 		ctrl.addButton("Reset")
-				.setPosition(210,80)
-				.setSize(100,75)
-				.setId(6)
-				.addListener(listener);
+				.setPosition(210,80).setSize(100,75)
+				.setId(6).addListener(listener);
 		
 	}
 	
