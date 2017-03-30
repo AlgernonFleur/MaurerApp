@@ -70,8 +70,12 @@ public class MaurerApp extends PApplet {
 		text("D value: " + dVal,105,200);
 		pushMatrix();
 		translate(width/2,height/2);
+		float xInit = 0;
+		float yInit = 0;
 		for (Point p:rose.getPointsList()) {
-			point((float)p.x(),(float)p.y());
+			line(xInit,-yInit,(float)p.x(),-(float)p.y());
+			xInit=(float)p.x();
+			yInit=(float)p.y();
 		}
 		popMatrix();
 	}
