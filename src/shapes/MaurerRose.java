@@ -8,10 +8,13 @@ import java.util.ArrayList;
 public class MaurerRose {
 	private ArrayList<Point> pointsList;
 	private float nVal,dVal;
+	private float radius;
 	
-	public MaurerRose(float nVal, float dVal) {
+	public MaurerRose(float nVal, float dVal,int width,int height) {
 		this.nVal = nVal;
 		this.dVal = dVal;
+		if(width > height) radius = width/4;
+		else radius = height/4;
 		updatePoints();
 	}
 	
@@ -27,7 +30,7 @@ public class MaurerRose {
 		ArrayList<Point> temp = new ArrayList<>();
 		double r,x,y;
 		for(int i=0;i<360*dVal;i+=dVal){
-			r = 500*Math.sin(Math.toRadians(nVal*i));
+			r = radius*Math.sin(Math.toRadians(nVal*i));
 			x = r * Math.cos(Math.toRadians(i));
 			y = r * Math.sin(Math.toRadians(i));
 			temp.add(new Point(x,y));

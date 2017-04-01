@@ -13,16 +13,16 @@ import shapes.Point;
  */
 public class MaurerApp extends PApplet {
 	
-	MaurerRose rose;
-	MaurerRose base;
+	private MaurerRose rose;
+	private MaurerRose base;
 	private ControlP5 ctrl;
-	private int nVal = 0, dVal = 1; //default values
+	private int nVal = 1, dVal = 1; //default values
 	private boolean showBase = false;
 	
 	public void setup(){
 		//initialise objects to use
-		rose = new MaurerRose(nVal,dVal);
-		base = new MaurerRose(nVal,1);
+		rose = new MaurerRose(nVal,dVal,width,height);
+		base = new MaurerRose(nVal,1,width,height);
 		ctrl = new ControlP5(this);
 		ctrl.setFont(new ControlFont(createFont("Arial",20)));
 		ButtonListener listener = new ButtonListener();
@@ -57,7 +57,7 @@ public class MaurerApp extends PApplet {
 				case(5): showBase = !showBase; break;
 				case(6): nVal=0;dVal=1; break;
 			}
-			nVal = constrain(nVal,0,360);
+			nVal = constrain(nVal,1,360);
 			dVal = constrain(dVal,1,360);
 			rose.update(nVal,dVal);
 			base.update(nVal,1);
@@ -78,7 +78,7 @@ public class MaurerApp extends PApplet {
 		
 		//for drawing the base rose
 		if(showBase){
-			stroke(255,0,0);
+			stroke(255,0,0,200);
 			xInit = 0;
 			yInit = 0;
 			for (Point p:base.getPointsList()) {
